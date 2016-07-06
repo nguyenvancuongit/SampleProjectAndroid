@@ -24,11 +24,8 @@ public class DialogUtil {
         builder.setTitle(title);
         builder.setMessage(message);
         if (!TextUtils.isEmpty(positiveButtonText)) {
-            builder.setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialogButton1PressInterface.onButton1Press();
-                }
+            builder.setPositiveButton(positiveButtonText, (dialog, which) -> {
+                dialogButton1PressInterface.onButton1Press();
             });
         }
     }
