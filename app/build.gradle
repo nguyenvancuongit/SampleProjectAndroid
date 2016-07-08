@@ -1,28 +1,56 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "android.app.tempapplication"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "1.0708"
 
         jackOptions {
             enabled true
         }
     }
+    signingConfigs {
+        release {
+            try {
+                storeFile file("../release/keystore.file")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias "keystore"
+                keyPassword KEY_PASSWORD
+            }
+            catch (ex) {
+                ex.printStackTrace()
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+    }
     buildTypes {
         debug {
-            buildConfigField "String", "HOST", "HostAddressStaging"
+            applicationIdSuffix '.debug'
+            buildConfigField "String", "HOST", "\"HOST_ADDRESSS_TAGING\""
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "HOST", "HostAddressProduction"
+            buildConfigField "String", "HOST", "\"HOST_ADDRESS_PRODUCTION\""
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def apkName = "temp-project";
+                if (variant.buildType.name == "release") {
+                    apkName += "-release" + "-v" + android.defaultConfig.versionName + ".apk";
+                    output.outputFile = new File("../release", apkName)
+                } else {
+                    apkName += "-staging" + "-v" + android.defaultConfig.versionName + ".apk";
+                    output.outputFile = new File((String) output.outputFile.parent, apkName)
+                }
+            }
         }
     }
     compileOptions {
@@ -34,6 +62,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.googlecode.libphonenumber:libphonenumber:7.3.0'
 }
