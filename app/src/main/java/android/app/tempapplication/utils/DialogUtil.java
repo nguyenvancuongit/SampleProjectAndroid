@@ -24,7 +24,7 @@ public class DialogUtil {
         builder.setMessage(message);
         if (!TextUtils.isEmpty(positiveButtonText)) {
             builder.setPositiveButton(positiveButtonText, (dialog, which) -> {
-                dialogButtonOkPressInterface.onButton1Press();
+                dialogButtonOkPressInterface.onButtonOkPress();
             });
         }
     }
