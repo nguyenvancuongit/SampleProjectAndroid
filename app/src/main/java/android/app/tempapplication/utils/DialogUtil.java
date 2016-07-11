@@ -3,7 +3,6 @@ package android.app.tempapplication.utils;
 import android.app.AlertDialog;
 import android.app.tempapplication.interfaces.DialogButton1PressInterface;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.TextUtils;
 
 /**
