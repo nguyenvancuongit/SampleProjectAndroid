@@ -1,5 +1,5 @@
 package android.app.tempapplication.interfaces;
 
-public interface DialogButton1PressInterface {
+public interface DialogButtonOkPressInterface {
     void onButton1Press();
 }

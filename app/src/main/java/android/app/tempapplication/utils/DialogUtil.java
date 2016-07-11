@@ -1,7 +1,7 @@
 package android.app.tempapplication.utils;
 
 import android.app.AlertDialog;
-import android.app.tempapplication.interfaces.DialogButton1PressInterface;
+import android.app.tempapplication.interfaces.DialogButtonOkPressInterface;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -12,19 +12,19 @@ public class DialogUtil {
     /**
      * show dialog with only 1 button
      *
-     * @param context                     the context
-     * @param title                       title of dialog
-     * @param message                     message want to show
-     * @param positiveButtonText          button text
-     * @param dialogButton1PressInterface interface to handle button press
+     * @param context                      the context
+     * @param title                        title of dialog
+     * @param message                      message want to show
+     * @param positiveButtonText           button text
+     * @param dialogButtonOkPressInterface interface to handle button press
      */
-    public static void showOneButtonDialog(Context context, String title, String message, String positiveButtonText, final DialogButton1PressInterface dialogButton1PressInterface) {
+    public static void showOneButtonDialog(Context context, String title, String message, String positiveButtonText, final DialogButtonOkPressInterface dialogButtonOkPressInterface) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
         if (!TextUtils.isEmpty(positiveButtonText)) {
             builder.setPositiveButton(positiveButtonText, (dialog, which) -> {
-                dialogButton1PressInterface.onButton1Press();
+                dialogButtonOkPressInterface.onButton1Press();
             });
         }
     }
