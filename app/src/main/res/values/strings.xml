@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TempApplication</string>
     <string name="title_activity_home">HomeActivity</string>
+
+    <string name="fragment_1">Fragment 1</string>
+    <string name="fragment_2">Fragment 2</string>
+    <string name="fragment_3">Fragment 3</string>
 </resources>

@@ -1,25 +1,35 @@
 package android.app.tempapplication.activities;
 
 import android.app.tempapplication.R;
+import android.app.tempapplication.adapters.MenuAdapter;
 import android.app.tempapplication.views.ToolbarView;
 import android.support.annotation.LayoutRes;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Windows 7 on 7/11/2016.
  */
-public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BaseActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     /**
      * UI
      */
-    NavigationView navigationView;
     ToolbarView toolbar;
     DrawerLayout drawer;
+    ListView lvMenu;
+
+    /**
+     * store
+     */
+    MenuAdapter menuAdapter;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -29,7 +39,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initToolbar() {
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // set UI
         toolbar = (ToolbarView) findViewById(R.id.toolbar);
 
         // listener
@@ -43,32 +53,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initNavigationView() {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+        // set UI
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lvMenu = (ListView) findViewById(R.id.lv_menu);
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        // set up menu data
+        List<String> menuList = new ArrayList<>();
+        menuList.add(getString(R.string.fragment_1));
+        menuList.add(getString(R.string.fragment_2));
+        menuList.add(getString(R.string.fragment_3));
+        menuAdapter = new MenuAdapter(this, menuList);
+        lvMenu.setAdapter(menuAdapter);
     }
 
     @Override
@@ -77,6 +72,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        if (menuAdapter.getItem(position).equals(getString(R.string.fragment_1))) {
+
+        } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_2))) {
+
+        } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_3))) {
+
         }
     }
 }
