@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by PC on 7/9/2016.
@@ -18,6 +19,7 @@ public class ToolbarView extends LinearLayout {
      * UI
      */
     ImageView imgMenu;
+    TextView tvTitle;
 
     /**
      * store
@@ -43,14 +45,16 @@ public class ToolbarView extends LinearLayout {
                 R.styleable.ToolbarView, defStyleAttr, 0);
 
         try {
-            isShowMenu = a.getBoolean(R.styleable.ToolbarView_show_button_back, true);
+            isShowMenu = a.getBoolean(R.styleable.ToolbarView_show_button_menu, true);
         } finally {
             a.recycle();
         }
 
         LayoutInflater.from(context).inflate(R.layout.toolbar_layout, this);
 
+        tvTitle = (TextView) this.findViewById(R.id.tv_title);
         imgMenu = (ImageButton) this.findViewById(R.id.img_menu);
+
         if (isShowMenu) {
             imgMenu.setVisibility(VISIBLE);
         } else {
@@ -62,7 +66,11 @@ public class ToolbarView extends LinearLayout {
         return imgMenu;
     }
 
-    public void setImgMenu(ImageView imgMenu) {
-        this.imgMenu = imgMenu;
+    public TextView getTvTitle() {
+        return tvTitle;
+    }
+
+    public void setTitle(String title) {
+        this.tvTitle.setText(title);
     }
 }

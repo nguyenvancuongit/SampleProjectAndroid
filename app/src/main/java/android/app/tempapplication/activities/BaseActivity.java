@@ -4,20 +4,21 @@ import android.app.tempapplication.R;
 import android.app.tempapplication.adapters.MenuAdapter;
 import android.app.tempapplication.views.ToolbarView;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Windows 7 on 7/11/2016.
  */
-public class BaseActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * UI
@@ -30,6 +31,7 @@ public class BaseActivity extends AppCompatActivity implements ListView.OnItemCl
      * store
      */
     MenuAdapter menuAdapter;
+    HashMap<String, String> mFragmentName;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -56,15 +58,17 @@ public class BaseActivity extends AppCompatActivity implements ListView.OnItemCl
         // set UI
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         lvMenu = (ListView) findViewById(R.id.lv_menu);
-
-        // set up menu data
-        List<String> menuList = new ArrayList<>();
-        menuList.add(getString(R.string.fragment_1));
-        menuList.add(getString(R.string.fragment_2));
-        menuList.add(getString(R.string.fragment_3));
-        menuAdapter = new MenuAdapter(this, menuList);
-        lvMenu.setAdapter(menuAdapter);
     }
+
+    /**
+     * setting data for mFragmentName. This is list fragment name
+     */
+    public abstract void initFragmentsName();
+
+    /**
+     * setup data for navigation left menu
+     */
+    public abstract void initMenuData();
 
     @Override
     public void onBackPressed() {
@@ -72,17 +76,72 @@ public class BaseActivity extends AppCompatActivity implements ListView.OnItemCl
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+            int size = getSupportFragmentManager().getBackStackEntryCount();
+            if (fragmentList != null && size > 0) {
+                setUI(getCurrentlyFragment());
+            } else {
+                super.onBackPressed();  // if activity doesn't attach any fragment, finish the activity
+            }
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        if (menuAdapter.getItem(position).equals(getString(R.string.fragment_1))) {
+    /**
+     * replace fragment
+     *
+     * @param fragment fragment for replace
+     */
+    public void transactionFragment(Fragment fragment) {
+        String backStateName = fragment.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
 
-        } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_2))) {
+        if (!fragmentPopped) { //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.fragment_content, fragment);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+            setUI(fragment);
+        }
+    }
 
-        } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_3))) {
+    /**
+     * set title for toolbar from list fragment name
+     *
+     * @param fragment currently fragment
+     */
+    private void setUI(Fragment fragment) {
+        if (fragment != null) {
+            toolbar.setTitle(getFragmentName(fragment.getClass().getSimpleName()));
+        }
+    }
 
+    /**
+     * use to get toolbar title from mFragmentName (list fragment name're saved)
+     *
+     * @param simpleName fragment class name
+     * @return fragment title
+     */
+    private String getFragmentName(String simpleName) {
+        for (Object name : mFragmentName.keySet()) {
+            String title = mFragmentName.get(name);
+            if (name.equals(simpleName)) {
+                return title;
+            }
+        }
+        return "Missing Name";
+    }
+
+    /**
+     * @return currently fragment
+     */
+    public Fragment getCurrentlyFragment() {
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        int size = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragmentList != null && size > 0) {
+            return fragmentList.get(size - 1);
+        } else {
+            return null;
         }
     }
 }
