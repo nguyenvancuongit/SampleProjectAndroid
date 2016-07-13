@@ -1,4 +1,4 @@
-package android.app.tempapplication.utils;
+package android.app.tempapplication.shared.utils;
 
 import java.io.BufferedInputStream;
 import java.io.File;

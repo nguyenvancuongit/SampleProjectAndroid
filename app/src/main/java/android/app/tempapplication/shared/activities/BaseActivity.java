@@ -1,8 +1,8 @@
-package android.app.tempapplication.activities;
+package android.app.tempapplication.shared.activities;
 
 import android.app.tempapplication.R;
-import android.app.tempapplication.adapters.MenuAdapter;
-import android.app.tempapplication.views.ToolbarView;
+import android.app.tempapplication.shared.adapters.MenuAdapter;
+import android.app.tempapplication.shared.views.ToolbarView;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,15 +23,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * UI
      */
-    ToolbarView toolbar;
-    DrawerLayout drawer;
-    ListView lvMenu;
+    public ToolbarView toolbar;
+    public DrawerLayout drawer;
+    public ListView lvMenu;
 
     /**
      * store
      */
-    MenuAdapter menuAdapter;
-    HashMap<String, String> mFragmentName;
+    public MenuAdapter menuAdapter;
+    public HashMap<String, String> mFragmentName;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {

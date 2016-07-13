@@ -1,7 +1,7 @@
-package android.app.tempapplication.utils;
+package android.app.tempapplication.shared.utils;
 
 import android.app.AlertDialog;
-import android.app.tempapplication.interfaces.DialogButtonOkPressInterface;
+import android.app.tempapplication.shared.interfaces.DialogButtonOkPressInterface;
 import android.content.Context;
 import android.text.TextUtils;
 

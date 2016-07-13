@@ -1,4 +1,4 @@
-package android.app.tempapplication.adapters;
+package android.app.tempapplication.shared.adapters;
 
 import android.app.tempapplication.R;
 import android.content.Context;

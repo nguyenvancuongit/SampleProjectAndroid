@@ -1,4 +1,4 @@
-package android.app.tempapplication.utils;
+package android.app.tempapplication.shared.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -2,7 +2,7 @@
     <string name="app_name">TempApplication</string>
     <string name="title_activity_home">HomeActivity</string>
 
-    <string name="fragment_1">Fragment 1</string>
-    <string name="fragment_2">Fragment 2</string>
-    <string name="fragment_3">Fragment 3</string>
+    <string name="fragment_name_home">Home</string>
+    <string name="fragment_name_home_2">Home 2</string>
+    <string name="fragment_name_register">Register</string>
 </resources>

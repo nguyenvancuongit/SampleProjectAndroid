@@ -1,4 +1,4 @@
-package android.app.tempapplication.fragments;
+package android.app.tempapplication.home;
 
 import android.app.tempapplication.R;
 import android.os.Bundle;
@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Show2stFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    public static Show2stFragment newInstance() {
-        Show2stFragment fragment = new Show2stFragment();
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
         return fragment;
     }
 
@@ -18,6 +18,6 @@ public class Show2stFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_2st, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }

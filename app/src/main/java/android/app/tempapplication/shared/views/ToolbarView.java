@@ -1,4 +1,4 @@
-package android.app.tempapplication.views;
+package android.app.tempapplication.shared.views;
 
 import android.app.tempapplication.R;
 import android.content.Context;
