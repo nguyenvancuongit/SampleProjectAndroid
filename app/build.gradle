@@ -42,27 +42,32 @@ android {
         }
     }
     buildTypes {
-        debug {
-            applicationIdSuffix '.debug'
-            buildConfigField "String", "HOST", "\"HOST_ADDRESSS_TAGING\""
-        }
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "HOST", "\"HOST_ADDRESS_PRODUCTION\""
         }
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
-                def apkName = "temp-project";
+                def apkName = "temp_project";
                 if (variant.buildType.name == "release") {
-                    apkName += "-release" + "-v" + android.defaultConfig.versionName + ".apk";
+                    apkName += "_" + variant.productFlavors[0].name + "_v" + android.defaultConfig.versionName + ".apk";
                     output.outputFile = new File("../release", apkName)
                 } else {
-                    apkName += "-staging" + "-v" + android.defaultConfig.versionName + ".apk";
+                    apkName += "_" + variant.productFlavors[0].name + "_v" + android.defaultConfig.versionName + ".apk";
                     output.outputFile = new File((String) output.outputFile.parent, apkName)
                 }
             }
+        }
+    }
+    productFlavors {
+        server_test {
+            applicationId "android.app.tempapplication.dev"
+            buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESSS_TAGING\""
+        }
+        server_prod {
+            applicationId "android.app.tempapplication"
+            buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESS_PRODUCTION\""
         }
     }
     compileOptions {
