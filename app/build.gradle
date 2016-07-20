@@ -70,6 +70,13 @@ android {
             buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESS_PRODUCTION\""
         }
     }
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+
+        if (names.contains("server_test") && variant.buildType.name == "release") {
+            variant.ignore = true
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
