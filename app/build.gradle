@@ -45,7 +45,7 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
@@ -69,6 +69,7 @@ android {
         server_prod {
             applicationId "android.app.tempapplication"
             buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESS_PRODUCTION\""
+            proguardFiles 'proguard-rules.pro'
         }
     }
     variantFilter { variant ->
