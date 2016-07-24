@@ -64,7 +64,7 @@ android {
     productFlavors {
         server_test {
             applicationId "android.app.tempapplication.dev"
-            buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESSS_TAGING\""
+            buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESSS_STAGING\""
         }
         server_prod {
             applicationId "android.app.tempapplication"
