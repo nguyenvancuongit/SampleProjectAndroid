@@ -25,7 +25,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0708"
+        versionName "1.0"
     }
     signingConfigs {
         release {
@@ -50,11 +50,12 @@ android {
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 def apkName = "temp_project";
+                def formattedDate = new Date().format('yyMMdd')
                 if (variant.buildType.name == "release") {
-                    apkName += "_" + variant.productFlavors[0].name + "_v" + android.defaultConfig.versionName + ".apk";
+                    apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_v" + android.defaultConfig.versionName + ".apk";
                     output.outputFile = new File("../release", apkName)
                 } else {
-                    apkName += "_" + variant.productFlavors[0].name + "_v" + android.defaultConfig.versionName + ".apk";
+                    apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_v" + android.defaultConfig.versionName + ".apk";
                     output.outputFile = new File((String) output.outputFile.parent, apkName)
                 }
             }
