@@ -53,7 +53,7 @@ android {
                 def formattedDate = new Date().format('yyMMdd')
                 if (variant.buildType.name == "release") {
                     apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_" + variant.buildType.name + "_v" + android.defaultConfig.versionName + ".apk";
-                    output.outputFile = new File("../release", apkName)
+                    output.outputFile = new File(getRootDir().path + "/release", apkName)
                 } else {
                     apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_" + variant.buildType.name + "_v" + android.defaultConfig.versionName + ".apk";
                     output.outputFile = new File((String) output.outputFile.parent, apkName)
