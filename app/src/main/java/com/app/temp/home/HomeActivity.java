@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity {
     @BindView(R.id.toolbar)
@@ -41,7 +40,6 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
 
         // init
         initToolbar();

@@ -1,6 +1,7 @@
 package com.app.temp.base.activities;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,11 +11,13 @@ import com.app.temp.base.views.ConfirmDialog;
 import com.app.temp.base.views.MessageDialog;
 import com.app.temp.base.views.ProgressDialog;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Windows 7 on 7/11/2016.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    public static String TAG = "";
+    public String TAG = "";
 
     MessageDialog mMessageDialog;
     ConfirmDialog mConfirmDialog;
@@ -25,6 +28,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTagLog();
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
     }
 
     /**
@@ -68,8 +77,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void hideToast() {
-        if (mToast != null)
+        if (mToast != null) {
             mToast.cancel();
+        }
     }
 
     @Override
