@@ -47,6 +47,9 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
+        debug {
+            minifyEnabled false
+        }
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 def apkName = "temp_project";
