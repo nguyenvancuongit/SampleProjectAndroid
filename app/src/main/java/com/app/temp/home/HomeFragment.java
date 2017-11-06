@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.temp.R;
-import com.app.temp.base.activities.BaseFragment;
+import com.app.temp.base.fragment.BaseFragment;
 
 public class HomeFragment extends BaseFragment {
 

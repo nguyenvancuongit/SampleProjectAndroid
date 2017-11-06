@@ -18,7 +18,7 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.app.temp"
@@ -73,13 +73,6 @@ android {
             applicationId "com.app.temp"
             buildConfigField "String", "HOST_EC2_HOTESPA", "\"HOST_ADDRESS_PRODUCTION\""
             proguardFiles 'proguard-rules.pro'
-        }
-    }
-    variantFilter { variant ->
-        def names = variant.flavors*.name
-
-        if (names.contains("server_test") && variant.buildType.name == "release") {
-            variant.ignore = true
         }
     }
     compileOptions {

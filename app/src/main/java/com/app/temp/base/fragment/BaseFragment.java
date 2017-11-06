@@ -1,9 +1,10 @@
-package com.app.temp.base.activities;
+package com.app.temp.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.app.temp.base.activities.BaseActivity;
 import com.app.temp.base.views.ConfirmDialog;
 import com.app.temp.base.views.MessageDialog;
 
