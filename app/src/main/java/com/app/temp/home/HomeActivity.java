@@ -48,8 +48,6 @@ public class HomeActivity extends BaseActivity {
 
         // init first screen
         transactionFragment(HomeFragment.newInstance());
-
-//        showLoading();
     }
 
     private void initToolbar() {

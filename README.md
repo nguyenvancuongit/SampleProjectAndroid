@@ -4,6 +4,7 @@
 - add sample key store, define key store password on gradle.property file
 - use different icon for debug and release
 - base activity
+- base fragment
 - Package by feature
 - ButterKnife
 - proguard
