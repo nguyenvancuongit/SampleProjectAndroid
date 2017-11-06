@@ -49,7 +49,7 @@ public class HomeActivity extends BaseActivity {
         // init first screen
         transactionFragment(HomeFragment.newInstance());
 
-        showLoading();
+//        showLoading();
     }
 
     private void initToolbar() {
@@ -119,11 +119,11 @@ public class HomeActivity extends BaseActivity {
 
         if (!fragmentPopped) { //fragment not in back stack, create it.
             FragmentTransaction ft = manager.beginTransaction();
-            ft.replace(R.id.fragment_content, fragment);
+            ft.add(R.id.fragment_content, fragment);
             ft.addToBackStack(backStateName);
             ft.commit();
-            setUI(fragment);
         }
+        setUI(fragment);
     }
 
     /**
