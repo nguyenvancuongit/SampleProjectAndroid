@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 
 buildscript {
     repositories {
@@ -8,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
     }
 }
 
@@ -51,25 +48,29 @@ android {
             minifyEnabled false
         }
         applicationVariants.all { variant ->
-            variant.outputs.each { output ->
+            variant.outputs.all { output ->
                 def apkName = "temp_project";
                 def formattedDate = new Date().format('yyMMdd')
                 if (variant.buildType.name == "release") {
                     apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_" + variant.buildType.name + "_v" + android.defaultConfig.versionName + ".apk";
-                    output.outputFile = new File(getRootDir().path + "/release", apkName)
+                    outputFileName = new File(getRootDir().path + "/release", apkName)
                 } else {
                     apkName += "_" + variant.productFlavors[0].name + "_" + formattedDate + "_" + variant.buildType.name + "_v" + android.defaultConfig.versionName + ".apk";
-                    output.outputFile = new File((String) output.outputFile.parent, apkName)
+                    outputFileName = new File((String) output.outputFile.parent, apkName)
                 }
             }
         }
     }
+
+    flavorDimensions "server_test", "server_prod"
     productFlavors {
         server_test {
+            dimension "server_test"
             applicationId "com.app.temp.dev"
             buildConfigField "String", "HOST_URL", "\"HOST_ADDRESSS_STAGING\""
         }
         server_prod {
+            dimension "server_prod"
             applicationId "com.app.temp"
             buildConfigField "String", "HOST_URL", "\"HOST_ADDRESS_PRODUCTION\""
             proguardFiles 'proguard-rules.pro'
@@ -90,7 +91,7 @@ dependencies {
 
     /*ButterKnife*/
     compile 'com.jakewharton:butterknife:8.8.1'
-    apt 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     /*Retrofit 2*/
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
