@@ -1,4 +1,4 @@
-package com.app.temp.base.utils;
+package com.app.temp.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

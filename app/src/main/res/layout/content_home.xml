@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.temp.home.HomeActivity">
+    tools:context=".features.home.HomeActivity">
 
-    <com.app.temp.base.views.ToolbarView
+    <com.app.temp.views.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

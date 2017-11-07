@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import com.app.temp.base.activities.BaseActivity;
-import com.app.temp.base.views.ConfirmDialog;
-import com.app.temp.base.views.MessageDialog;
+import com.app.temp.base.activity.BaseActivity;
+import com.app.temp.views.ConfirmDialog;
+import com.app.temp.views.MessageDialog;
 
 /**
  * Created by nguyen_van_cuong on 10/10/2017.

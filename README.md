@@ -5,6 +5,9 @@
 - use different icon for debug and release
 - base activity
 - base fragment
-- Package by feature
+- package by feature
 - ButterKnife
 - proguard
+- rxjava 2
+- retrofit 2
+- gson

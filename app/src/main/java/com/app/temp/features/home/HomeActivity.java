@@ -1,4 +1,4 @@
-package com.app.temp.home;
+package com.app.temp.features.home;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,10 +9,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
 
 import com.app.temp.R;
-import com.app.temp.base.activities.BaseActivity;
-import com.app.temp.base.adapters.MenuAdapter;
-import com.app.temp.base.views.ToolbarView;
-import com.app.temp.register.RegisterFragment;
+import com.app.temp.base.activity.BaseActivity;
+import com.app.temp.base.adapter.MenuAdapter;
+import com.app.temp.views.ToolbarView;
+import com.app.temp.features.register.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;

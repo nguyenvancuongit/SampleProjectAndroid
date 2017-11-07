@@ -1,4 +1,4 @@
-package com.app.temp.base.adapters;
+package com.app.temp.base.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

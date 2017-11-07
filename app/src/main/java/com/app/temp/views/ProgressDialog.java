@@ -1,4 +1,4 @@
-package com.app.temp.base.views;
+package com.app.temp.views;
 
 import android.content.Context;
 import android.graphics.Color;

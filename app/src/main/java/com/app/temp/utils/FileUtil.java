@@ -1,4 +1,4 @@
-package com.app.temp.base.utils;
+package com.app.temp.utils;
 
 import java.io.BufferedInputStream;
 import java.io.File;

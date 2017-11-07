@@ -1,4 +1,4 @@
-package com.app.temp.register;
+package com.app.temp.features.register;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

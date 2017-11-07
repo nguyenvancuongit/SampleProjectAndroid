@@ -1,4 +1,4 @@
-package com.app.temp.base.activities;
+package com.app.temp.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.app.temp.base.views.ConfirmDialog;
-import com.app.temp.base.views.MessageDialog;
-import com.app.temp.base.views.ProgressDialog;
+import com.app.temp.views.ConfirmDialog;
+import com.app.temp.views.MessageDialog;
+import com.app.temp.views.ProgressDialog;
 
 import butterknife.ButterKnife;
 

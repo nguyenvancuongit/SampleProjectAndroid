@@ -1,4 +1,4 @@
-package com.app.temp.home;
+package com.app.temp.features.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
