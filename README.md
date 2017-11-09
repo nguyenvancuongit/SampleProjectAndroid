@@ -1,4 +1,4 @@
-- lamda
+- retrolamda (remove cuz AS 3.0 is already supported)
 - config signing config to build release apk by gradle
 - use different application id for debug and release build
 - add sample key store, define key store password on gradle.property file
@@ -8,6 +8,8 @@
 - package by feature
 - ButterKnife
 - proguard
-- rxjava 2
-- retrofit 2
+- rxjava
+- OkHttp
+- retrofit
 - gson
+- dagger
