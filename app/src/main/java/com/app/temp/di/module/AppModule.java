@@ -1,4 +1,4 @@
-package com.app.temp.dagger.module;
+package com.app.temp.di.module;
 
 import android.app.Application;
 

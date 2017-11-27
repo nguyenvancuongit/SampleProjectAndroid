@@ -5,10 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.app.temp.base.activity.BaseActivity;
+import com.app.temp.network.API;
 import com.app.temp.views.ConfirmDialog;
 import com.app.temp.views.MessageDialog;
-
-import retrofit2.Retrofit;
 
 /**
  * Created by nguyen_van_cuong on 10/10/2017.
@@ -79,9 +78,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * setup for Retrofit
+     * setup for Api
      */
-    public Retrofit getRetrofit() {
-        return ((BaseActivity) getActivity()).getRetrofit();
+    public API getApi() {
+        return ((BaseActivity) getActivity()).getApi();
     }
 }

@@ -1,10 +1,8 @@
 package com.app.temp.network;
 
-import com.app.temp.pojo.Post;
+import com.app.temp.network.model.PostsResponse;
 
-import java.util.List;
-
-import retrofit2.Call;
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 
 /**
@@ -13,5 +11,5 @@ import retrofit2.http.GET;
 
 public interface API {
     @GET("/posts")
-    Call<List<Post>> getPosts();
+    Flowable<PostsResponse> getPosts();
 }

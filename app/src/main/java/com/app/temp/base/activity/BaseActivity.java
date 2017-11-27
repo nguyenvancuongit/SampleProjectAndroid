@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.app.temp.MyApplication;
+import com.app.temp.network.API;
 import com.app.temp.views.ConfirmDialog;
 import com.app.temp.views.MessageDialog;
 import com.app.temp.views.ProgressDialog;
@@ -15,7 +16,6 @@ import com.app.temp.views.ProgressDialog;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import retrofit2.Retrofit;
 
 /**
  * Created by Windows 7 on 7/11/2016.
@@ -29,14 +29,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     Toast mToast;
 
-    @Inject
-    Retrofit mRetrofit;
+    @Inject API api;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTagLog();
-        initRetrofit();
+        MyApplication.getAppComponent().inject(this);
     }
 
     @Override
@@ -112,13 +111,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * setup for Retrofit
+     * setup for Api
      */
-    public void initRetrofit() {
-        ((MyApplication) getApplication()).getNetComponent().inject(this);
-    }
-
-    public Retrofit getRetrofit() {
-        return mRetrofit;
+    public API getApi() {
+        return api;
     }
 }
