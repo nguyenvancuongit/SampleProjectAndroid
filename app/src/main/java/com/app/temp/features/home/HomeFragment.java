@@ -27,7 +27,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getApi().getPosts()
+        disposable = getApi().getPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(postsResponse -> printLog("postsResponse = " + postsResponse.getPosts().size()), Throwable::printStackTrace);

@@ -9,15 +9,20 @@ import com.app.temp.network.API;
 import com.app.temp.views.ConfirmDialog;
 import com.app.temp.views.MessageDialog;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by nguyen_van_cuong on 10/10/2017.
  */
 
 public abstract class BaseFragment extends Fragment {
 
+    public Disposable disposable;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        disposable = ((BaseActivity) getActivity()).getDisposable();
         setTagLog();
     }
 
