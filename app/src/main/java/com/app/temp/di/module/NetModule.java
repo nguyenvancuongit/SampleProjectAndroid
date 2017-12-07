@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.app.temp.network.model.PostsResponse;
 import com.app.temp.network.model.PostsResponseDeserializerJson;
+import com.app.temp.network.model.RepositoriesResponse;
+import com.app.temp.network.model.RepositoriesResponseDeserializerJson;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,6 +44,7 @@ public class NetModule {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         gsonBuilder.registerTypeAdapter(PostsResponse.class, new PostsResponseDeserializerJson());  // for sample, should remove
+        gsonBuilder.registerTypeAdapter(RepositoriesResponse.class, new RepositoriesResponseDeserializerJson());  // for sample, should remove
         return gsonBuilder.create();
     }
 
