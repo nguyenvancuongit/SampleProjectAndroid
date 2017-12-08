@@ -1,4 +1,4 @@
-package com.app.temp.features.home;
+package com.app.temp.features.home.repolist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +18,7 @@ import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeFragment extends BaseFragment {
+public class RepoListFragment extends BaseFragment {
 
     @BindView(R.id.edt_name)
     EditText edtName;
@@ -29,8 +29,8 @@ public class HomeFragment extends BaseFragment {
 
     RepositoryAdapter adapter;
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static RepoListFragment newInstance() {
+        RepoListFragment fragment = new RepoListFragment();
         return fragment;
     }
 
@@ -50,6 +50,7 @@ public class HomeFragment extends BaseFragment {
             if (edtName.getText().toString().trim().isEmpty()) {
                 showMessage("Searching an empty content.");
             } else {
+                hideSoftKeyboard();
                 loadGithubRepos(edtName.getText().toString().trim());
             }
         });

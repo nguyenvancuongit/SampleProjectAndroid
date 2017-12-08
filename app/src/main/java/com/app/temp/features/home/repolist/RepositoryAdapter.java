@@ -1,4 +1,4 @@
-package com.app.temp.features.home;
+package com.app.temp.features.home.repolist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

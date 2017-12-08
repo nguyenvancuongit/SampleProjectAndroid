@@ -5,6 +5,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.app.temp.MyApplication;
@@ -130,6 +131,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         // unsubscribe to avoid memory leaks
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
+        }
+    }
+
+    /**
+     * hides the soft keyboard
+     */
+    public void hideSoftKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
 }

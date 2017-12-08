@@ -1,9 +1,11 @@
 package com.app.temp.base.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.app.temp.base.activity.BaseActivity;
 import com.app.temp.network.API;
@@ -100,5 +102,26 @@ public abstract class BaseFragment extends Fragment {
 
     public void setDisposable() {
         disposable = ((BaseActivity) getActivity()).getDisposable();
+    }
+
+    /**
+     * hides the soft keyboard
+     */
+    public void hideSoftKeyboard() {
+        try {
+            getActivity().getCurrentFocus().post(() -> {
+                try {
+                    InputMethodManager inputManager = (InputMethodManager) getActivity()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getActivity()
+                                    .getCurrentFocus().getApplicationWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
