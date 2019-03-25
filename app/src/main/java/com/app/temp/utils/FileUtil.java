@@ -1,5 +1,8 @@
 package com.app.temp.utils;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,16 +25,14 @@ public class FileUtil {
      *
      * @param urlLink  ex https://pbs.twimg.com/profile_images/616076655547682816
      * @param fileName ex 6gMRtQyY.jpg
-     * @param pathSave ex sdcard0/data/save_path
      * @return true if successful
      */
-    public static boolean doDownload(final String urlLink, final String fileName, String pathSave) {
-        Boolean check = false;
+    public static boolean doDownload(final String urlLink, final String fileName, Context context) {
+        Log.d("FileUtil", "doDownload = \n" +
+                urlLink + "\n" +
+                fileName + "\n");
 
-        File dir = new File(pathSave);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
+        boolean check = false;
 
         try {
             URL url = new URL(urlLink);
@@ -41,7 +42,7 @@ public class FileUtil {
 
             // download the file
             InputStream input = new BufferedInputStream(url.openStream());
-            OutputStream output = new FileOutputStream(dir + "/" + fileName);
+            OutputStream output = new FileOutputStream(context.getFilesDir() + "/" + fileName);
 
             byte data[] = new byte[1024];
             int count;
