@@ -4,6 +4,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="no_internet">There\'s no connection. Please check again.</string>
 
     <!--fragment name-->
     <string name="fragment_name_home">Home</string>
