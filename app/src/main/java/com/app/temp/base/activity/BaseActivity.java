@@ -1,9 +1,6 @@
 package com.app.temp.base.activity;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -16,6 +13,9 @@ import com.app.temp.views.ProgressDialog;
 
 import javax.inject.Inject;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 

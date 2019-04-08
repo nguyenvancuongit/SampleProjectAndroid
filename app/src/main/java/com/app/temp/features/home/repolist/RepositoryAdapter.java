@@ -1,6 +1,5 @@
 package com.app.temp.features.home.repolist;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +12,23 @@ import com.app.temp.pojo.Repository;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by nguyen_van_cuong on 05/12/2017.
  */
 
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder> {
 
-    List<Repository> repositories;
-    Callback callback;
+    private List<Repository> repositories;
+    private Callback callback;
 
-    public RepositoryAdapter(Callback callback) {
+    RepositoryAdapter(Callback callback) {
         this.callback = callback;
         this.repositories = Collections.emptyList();
     }
 
-    public void setRepositories(List<Repository> repositories) {
+    void setRepositories(List<Repository> repositories) {
         this.repositories = repositories;
     }
 

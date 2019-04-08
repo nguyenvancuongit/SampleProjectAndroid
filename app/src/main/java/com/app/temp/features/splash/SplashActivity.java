@@ -7,13 +7,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 
 import com.app.temp.R;
 import com.app.temp.base.activity.BaseActivity;
 import com.app.temp.features.home.HomeActivity;
 import com.app.temp.utils.CommonUtil;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 public class SplashActivity extends BaseActivity {
 

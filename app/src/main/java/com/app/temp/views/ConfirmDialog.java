@@ -2,12 +2,13 @@ package com.app.temp.views;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
 import com.app.temp.R;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by nguyen_van_cuong on 10/10/2017.

@@ -2,8 +2,6 @@ package com.app.temp.base.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -12,6 +10,11 @@ import com.app.temp.network.API;
 import com.app.temp.views.ConfirmDialog;
 import com.app.temp.views.MessageDialog;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 
@@ -21,7 +24,7 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment {
 
-    public Disposable disposable;
+    protected Disposable disposable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
     }
@@ -40,81 +43,81 @@ public abstract class BaseFragment extends Fragment {
     /**
      * setup for log
      */
-    public void setTagLog() {
-        ((BaseActivity) getActivity()).TAG = this.getClass().getName();
+    private void setTagLog() {
+        ((BaseActivity) Objects.requireNonNull(getActivity())).TAG = this.getClass().getName();
     }
 
-    public void printLog(String log) {
-        ((BaseActivity) getActivity()).printLog(log);
+    protected void printLog(String log) {
+        ((BaseActivity) Objects.requireNonNull(getActivity())).printLog(log);
     }
 
     /**
      * setup for dialog
      */
-    public void showMessage(String pMsg) {
-        ((BaseActivity) getActivity()).showMessage(pMsg);
+    protected void showMessage(String pMsg) {
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showMessage(pMsg);
     }
 
     public void showMessageWithCallback(String pMsg, MessageDialog.MessageDialogCallback pCallback) {
-        ((BaseActivity) getActivity()).showMessageWithCallback(pMsg, pCallback);
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showMessageWithCallback(pMsg, pCallback);
     }
 
     public void showConfirmWithCallback(String pMsg, ConfirmDialog.ConfirmDialogCallback pCallback) {
-        ((BaseActivity) getActivity()).showConfirmWithCallback(pMsg, pCallback);
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showConfirmWithCallback(pMsg, pCallback);
     }
 
     public void showConfirmWithCustomTextAndCallback(String pMsg, String pCancelText, String pConfirmText, ConfirmDialog.ConfirmDialogCallback pCallback) {
-        ((BaseActivity) getActivity()).showConfirmWithCustomTextAndCallback(pMsg, pCancelText, pConfirmText, pCallback);
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showConfirmWithCustomTextAndCallback(pMsg, pCancelText, pConfirmText, pCallback);
     }
 
     public void showConfirmWithTitleAndCallback(String pTitle, String pMsg, String pCancelText, String pConfirmText, ConfirmDialog.ConfirmDialogCallback pCallback) {
-        ((BaseActivity) getActivity()).showConfirmWithTitleAndCallback(pTitle, pMsg, pCancelText, pConfirmText, pCallback);
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showConfirmWithTitleAndCallback(pTitle, pMsg, pCancelText, pConfirmText, pCallback);
     }
 
     /**
      * setup for Toast
      */
     public void showToast(String pMsg) {
-        ((BaseActivity) getActivity()).showToast(pMsg);
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showToast(pMsg);
     }
 
     public void hideToast() {
-        ((BaseActivity) getActivity()).hideToast();
+        ((BaseActivity) Objects.requireNonNull(getActivity())).hideToast();
     }
 
     /**
      * setup for loading
      */
     public void showLoading() {
-        ((BaseActivity) getActivity()).showLoading();
+        ((BaseActivity) Objects.requireNonNull(getActivity())).showLoading();
     }
 
     public void hideLoading() {
-        ((BaseActivity) getActivity()).hideLoading();
+        ((BaseActivity) Objects.requireNonNull(getActivity())).hideLoading();
     }
 
     /**
      * setup for Api
      */
-    public API getApi() {
-        return ((BaseActivity) getActivity()).getApi();
+    protected API getApi() {
+        return ((BaseActivity) Objects.requireNonNull(getActivity())).getApi();
     }
 
-    public void setDisposable() {
-        disposable = ((BaseActivity) getActivity()).getDisposable();
+    private void setDisposable() {
+        disposable = ((BaseActivity) Objects.requireNonNull(getActivity())).getDisposable();
     }
 
     /**
      * hides the soft keyboard
      */
-    public void hideSoftKeyboard() {
+    protected void hideSoftKeyboard() {
         try {
-            getActivity().getCurrentFocus().post(() -> {
+            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getCurrentFocus()).post(() -> {
                 try {
                     InputMethodManager inputManager = (InputMethodManager) getActivity()
                             .getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputManager.hideSoftInputFromWindow(getActivity()
-                                    .getCurrentFocus().getApplicationWindowToken(),
+                    inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity()
+                                    .getCurrentFocus()).getApplicationWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
                 } catch (Exception e) {
                     e.printStackTrace();
