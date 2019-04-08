@@ -6,7 +6,7 @@ import android.widget.ListView;
 import com.app.temp.R;
 import com.app.temp.base.activity.BaseActivity;
 import com.app.temp.base.adapter.MenuAdapter;
-import com.app.temp.features.home.repolist.RepoListFragment;
+import com.app.temp.features.home.repolist.TopicListFragment;
 import com.app.temp.features.register.RegisterFragment;
 import com.app.temp.views.ToolbarView;
 
@@ -48,7 +48,7 @@ public class HomeActivity extends BaseActivity {
         initMenuData();
 
         // init first screen
-        transactionFragment(RepoListFragment.newInstance());
+        transactionFragment(TopicListFragment.newInstance());
     }
 
     private void initToolbar() {
@@ -64,7 +64,7 @@ public class HomeActivity extends BaseActivity {
 
     public void initFragmentsName() {
         mFragmentName = new HashMap<>();
-        mFragmentName.put(RepoListFragment.class.getSimpleName(), getString(R.string.fragment_name_home));
+        mFragmentName.put(TopicListFragment.class.getSimpleName(), getString(R.string.fragment_name_home));
         mFragmentName.put(Home2Fragment.class.getSimpleName(), getString(R.string.fragment_name_home_2));
         mFragmentName.put(RegisterFragment.class.getSimpleName(), getString(R.string.fragment_name_register));
     }
@@ -80,7 +80,7 @@ public class HomeActivity extends BaseActivity {
         // set menu click event
         lvMenu.setOnItemClickListener((adapterView, view, position, id) -> {
             if (menuAdapter.getItem(position).equals(getString(R.string.fragment_name_home))) {
-                transactionFragment(RepoListFragment.newInstance());
+                transactionFragment(TopicListFragment.newInstance());
             } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_name_home_2))) {
                 transactionFragment(Home2Fragment.newInstance());
             } else if (menuAdapter.getItem(position).equals(getString(R.string.fragment_name_register))) {
@@ -96,9 +96,8 @@ public class HomeActivity extends BaseActivity {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
             int size = getSupportFragmentManager().getBackStackEntryCount();
-            if (fragmentList != null && size > 0) {
+            if (size > 0) {
                 setUI(getCurrentlyFragment());
             } else {
                 super.onBackPressed();  // if activity doesn't attach any fragment, finish the activity
@@ -158,7 +157,7 @@ public class HomeActivity extends BaseActivity {
     public Fragment getCurrentlyFragment() {
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         int size = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragmentList != null && size > 0) {
+        if (size > 0) {
             return fragmentList.get(size - 1);
         } else {
             return null;

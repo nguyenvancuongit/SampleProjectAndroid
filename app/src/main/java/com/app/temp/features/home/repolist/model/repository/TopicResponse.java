@@ -7,21 +7,21 @@ import java.util.List;
  * Created by nguyen_van_cuong on 13/11/2017.
  */
 
-public class RepositoryResponse {
-    private List<Repository> repositories;
+public class TopicResponse {
+    private List<Topic> repositories;
 
-    public List<Repository> getRepositories() {
+    public List<Topic> getRepositories() {
         return repositories;
     }
 
-    public void setRepositories(List<Repository> repositories) {
+    public void setRepositories(List<Topic> repositories) {
         this.repositories = repositories;
     }
 
-    public void add(Repository repository) {
+    public void add(Topic topic) {
         if (repositories == null) {
             repositories = new LinkedList<>();
         }
-        repositories.add(repository);
+        repositories.add(topic);
     }
 }

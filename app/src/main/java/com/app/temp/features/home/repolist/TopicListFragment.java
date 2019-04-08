@@ -10,10 +10,11 @@ import android.widget.ImageView;
 import com.app.temp.R;
 import com.app.temp.base.fragment.BaseFragment;
 import com.app.temp.features.home.detail.RepoDetailActivity;
-import com.app.temp.features.home.repolist.model.repository.Repository;
-import com.app.temp.features.home.repolist.presenter.IRepoListPresenter;
-import com.app.temp.features.home.repolist.presenter.RepoListPresenter;
-import com.app.temp.features.home.repolist.view.IRepoListView;
+import com.app.temp.features.home.repolist.adapter.TopicAdapter;
+import com.app.temp.features.home.repolist.model.repository.Topic;
+import com.app.temp.features.home.repolist.presenter.ITopicListPresenter;
+import com.app.temp.features.home.repolist.presenter.TopicListPresenter;
+import com.app.temp.features.home.repolist.view.ITopicListView;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
-public class RepoListFragment extends BaseFragment implements IRepoListView {
+public class TopicListFragment extends BaseFragment implements ITopicListView {
 
     @BindView(R.id.edt_name)
     EditText edtName;
@@ -32,12 +33,12 @@ public class RepoListFragment extends BaseFragment implements IRepoListView {
     @BindView(R.id.rc_list)
     RecyclerView rcList;
 
-    private IRepoListPresenter repoListPresenter;
+    private ITopicListPresenter repoListPresenter;
 
-    private RepositoryAdapter adapter;
+    private TopicAdapter adapter;
 
-    public static RepoListFragment newInstance() {
-        RepoListFragment fragment = new RepoListFragment();
+    public static TopicListFragment newInstance() {
+        TopicListFragment fragment = new TopicListFragment();
         return fragment;
     }
 
@@ -53,7 +54,7 @@ public class RepoListFragment extends BaseFragment implements IRepoListView {
         super.onViewCreated(view, savedInstanceState);
 
         // Init
-        repoListPresenter = new RepoListPresenter(this);
+        repoListPresenter = new TopicListPresenter(this);
 
         // Event
         btnSearch.setOnClickListener(view1 -> {
@@ -67,18 +68,18 @@ public class RepoListFragment extends BaseFragment implements IRepoListView {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        adapter = new RepositoryAdapter(repository -> RepoDetailActivity.start(getContext(), repository.getOwner().getAvatarUrl()));
+        adapter = new TopicAdapter(repository -> RepoDetailActivity.start(getContext(), repository.getOwner().getAvatarUrl()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
 
-    private void updateRecyclerData(List<Repository> repositories) {
+    private void updateRecyclerData(List<Topic> repositories) {
         adapter.setRepositories(repositories);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void loadGithubReposResult(List<Repository> repositories) {
+    public void loadGithubReposResult(List<Topic> repositories) {
         setupRecyclerView(rcList);
         updateRecyclerData(repositories);
     }

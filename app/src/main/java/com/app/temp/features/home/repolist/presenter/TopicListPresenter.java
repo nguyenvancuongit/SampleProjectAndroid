@@ -2,18 +2,18 @@ package com.app.temp.features.home.repolist.presenter;
 
 import android.annotation.SuppressLint;
 
-import com.app.temp.features.home.repolist.view.IRepoListView;
+import com.app.temp.features.home.repolist.view.ITopicListView;
 import com.app.temp.network.API;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class RepoListPresenter implements IRepoListPresenter {
+public class TopicListPresenter implements ITopicListPresenter {
 
-    private IRepoListView iRepoListView;
+    private ITopicListView iTopicListView;
 
-    public RepoListPresenter(IRepoListView iRepoListView) {
-        this.iRepoListView = iRepoListView;
+    public TopicListPresenter(ITopicListView iTopicListView) {
+        this.iTopicListView = iTopicListView;
     }
 
     @SuppressLint("CheckResult")
@@ -22,6 +22,6 @@ public class RepoListPresenter implements IRepoListPresenter {
         api.publicRepositories(userName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repositoriesResponse -> iRepoListView.loadGithubReposResult(repositoriesResponse.getRepositories()), Throwable::printStackTrace);
+                .subscribe(repositoriesResponse -> iTopicListView.loadGithubReposResult(repositoriesResponse.getRepositories()), Throwable::printStackTrace);
     }
 }

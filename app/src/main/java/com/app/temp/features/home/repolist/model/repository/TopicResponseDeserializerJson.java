@@ -13,18 +13,18 @@ import java.lang.reflect.Type;
  * Created by nguyen_van_cuong on 23/11/2017.
  */
 
-public class RepositoryResponseDeserializerJson implements JsonDeserializer<RepositoryResponse> {
+public class TopicResponseDeserializerJson implements JsonDeserializer<TopicResponse> {
 
     @Override
-    public RepositoryResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
+    public TopicResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
             throws JsonParseException {
-        RepositoryResponse repositoryResponse = new RepositoryResponse();
+        TopicResponse topicResponse = new TopicResponse();
         JsonArray jsonArray = je.getAsJsonArray();
         Gson gson = new Gson();
         for (JsonElement element : jsonArray) {
-            Repository repository = gson.fromJson(element.getAsJsonObject(), Repository.class);
-            repositoryResponse.add(repository);
+            Topic topic = gson.fromJson(element.getAsJsonObject(), Topic.class);
+            topicResponse.add(topic);
         }
-        return repositoryResponse;
+        return topicResponse;
     }
 }

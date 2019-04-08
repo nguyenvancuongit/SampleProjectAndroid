@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by nguyen_van_cuong on 05/12/2017.
  */
 
-public class Repository {
+public class Topic {
 
     @SerializedName("id")
     @Expose

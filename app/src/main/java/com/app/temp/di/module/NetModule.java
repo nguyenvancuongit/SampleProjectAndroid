@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.app.temp.features.home.repolist.model.post.PostResponse;
 import com.app.temp.features.home.repolist.model.post.PostResponseDeserializerJson;
-import com.app.temp.features.home.repolist.model.repository.RepositoryResponse;
-import com.app.temp.features.home.repolist.model.repository.RepositoryResponseDeserializerJson;
+import com.app.temp.features.home.repolist.model.repository.TopicResponse;
+import com.app.temp.features.home.repolist.model.repository.TopicResponseDeserializerJson;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,7 +44,7 @@ public class NetModule {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         gsonBuilder.registerTypeAdapter(PostResponse.class, new PostResponseDeserializerJson());  // for sample, should remove
-        gsonBuilder.registerTypeAdapter(RepositoryResponse.class, new RepositoryResponseDeserializerJson());  // for sample, should remove
+        gsonBuilder.registerTypeAdapter(TopicResponse.class, new TopicResponseDeserializerJson());  // for sample, should remove
         return gsonBuilder.create();
     }
 
