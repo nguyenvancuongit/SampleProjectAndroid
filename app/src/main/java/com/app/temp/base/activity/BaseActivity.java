@@ -17,7 +17,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Windows 7 on 7/11/2016.
@@ -33,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
     API api;
-    Disposable disposable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,20 +117,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public API getApi() {
         return api;
-    }
-
-    public Disposable getDisposable() {
-        return disposable;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // unsubscribe to avoid memory leaks
-        if (disposable != null && !disposable.isDisposed()) {
-            disposable.dispose();
-        }
     }
 
     /**

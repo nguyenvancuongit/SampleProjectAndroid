@@ -1,6 +1,5 @@
-package com.app.temp.network.model;
+package com.app.temp.features.home.repolist.model.post;
 
-import com.app.temp.pojo.Post;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -14,18 +13,18 @@ import java.lang.reflect.Type;
  * Created by nguyen_van_cuong on 23/11/2017.
  */
 
-public class PostsResponseDeserializerJson implements JsonDeserializer<PostsResponse> {
+public class PostResponseDeserializerJson implements JsonDeserializer<PostResponse> {
 
     @Override
-    public PostsResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
+    public PostResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
             throws JsonParseException {
-        PostsResponse postsResponse = new PostsResponse();
+        PostResponse postResponse = new PostResponse();
         JsonArray jsonArray = je.getAsJsonArray();
         Gson gson = new Gson();
         for (JsonElement element : jsonArray) {
             Post post = gson.fromJson(element.getAsJsonObject(), Post.class);
-            postsResponse.add(post);
+            postResponse.add(post);
         }
-        return postsResponse;
+        return postResponse;
     }
 }

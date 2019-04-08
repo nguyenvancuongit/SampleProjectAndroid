@@ -1,4 +1,4 @@
-package com.app.temp.pojo;
+package com.app.temp.features.home.repolist.model.post;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,6 +1,4 @@
-package com.app.temp.network.model;
-
-import com.app.temp.pojo.Repository;
+package com.app.temp.features.home.repolist.model.repository;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
  * Created by nguyen_van_cuong on 13/11/2017.
  */
 
-public class RepositoriesResponse {
+public class RepositoryResponse {
     private List<Repository> repositories;
 
     public List<Repository> getRepositories() {

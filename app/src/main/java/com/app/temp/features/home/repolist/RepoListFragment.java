@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import com.app.temp.R;
 import com.app.temp.base.fragment.BaseFragment;
 import com.app.temp.features.home.detail.RepoDetailActivity;
-import com.app.temp.pojo.Repository;
+import com.app.temp.features.home.repolist.model.repository.Repository;
+import com.app.temp.features.home.repolist.presenter.IRepoListPresenter;
+import com.app.temp.features.home.repolist.presenter.RepoListPresenter;
+import com.app.temp.features.home.repolist.view.IRepoListView;
 
 import java.util.List;
 
@@ -19,10 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
-public class RepoListFragment extends BaseFragment {
+public class RepoListFragment extends BaseFragment implements IRepoListView {
 
     @BindView(R.id.edt_name)
     EditText edtName;
@@ -30,6 +31,8 @@ public class RepoListFragment extends BaseFragment {
     ImageView btnSearch;
     @BindView(R.id.rc_list)
     RecyclerView rcList;
+
+    private IRepoListPresenter repoListPresenter;
 
     private RepositoryAdapter adapter;
 
@@ -49,12 +52,16 @@ public class RepoListFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Init
+        repoListPresenter = new RepoListPresenter(this);
+
+        // Event
         btnSearch.setOnClickListener(view1 -> {
             if (edtName.getText().toString().trim().isEmpty()) {
                 showMessage("Searching an empty content.");
             } else {
                 hideSoftKeyboard();
-                loadGithubRepos(edtName.getText().toString().trim());
+                repoListPresenter.loadGithubRepos(getApi(), edtName.getText().toString().trim());
             }
         });
     }
@@ -70,13 +77,9 @@ public class RepoListFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
-    private void loadGithubRepos(String userName) {
-        disposable = getApi().publicRepositories(userName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repositoriesResponse -> {
-                    setupRecyclerView(rcList);
-                    updateRecyclerData(repositoriesResponse.getRepositories());
-                }, Throwable::printStackTrace);
+    @Override
+    public void loadGithubReposResult(List<Repository> repositories) {
+        setupRecyclerView(rcList);
+        updateRecyclerData(repositories);
     }
 }

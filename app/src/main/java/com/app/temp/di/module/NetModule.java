@@ -2,10 +2,10 @@ package com.app.temp.di.module;
 
 import android.app.Application;
 
-import com.app.temp.network.model.PostsResponse;
-import com.app.temp.network.model.PostsResponseDeserializerJson;
-import com.app.temp.network.model.RepositoriesResponse;
-import com.app.temp.network.model.RepositoriesResponseDeserializerJson;
+import com.app.temp.features.home.repolist.model.post.PostResponse;
+import com.app.temp.features.home.repolist.model.post.PostResponseDeserializerJson;
+import com.app.temp.features.home.repolist.model.repository.RepositoryResponse;
+import com.app.temp.features.home.repolist.model.repository.RepositoryResponseDeserializerJson;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,8 +43,8 @@ public class NetModule {
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(PostsResponse.class, new PostsResponseDeserializerJson());  // for sample, should remove
-        gsonBuilder.registerTypeAdapter(RepositoriesResponse.class, new RepositoriesResponseDeserializerJson());  // for sample, should remove
+        gsonBuilder.registerTypeAdapter(PostResponse.class, new PostResponseDeserializerJson());  // for sample, should remove
+        gsonBuilder.registerTypeAdapter(RepositoryResponse.class, new RepositoryResponseDeserializerJson());  // for sample, should remove
         return gsonBuilder.create();
     }
 

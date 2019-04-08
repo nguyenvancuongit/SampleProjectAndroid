@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.temp.R;
-import com.app.temp.pojo.Repository;
+import com.app.temp.features.home.repolist.model.repository.Repository;
 
 import java.util.Collections;
 import java.util.List;

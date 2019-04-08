@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by nguyen_van_cuong on 10/10/2017.
@@ -24,14 +23,11 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment {
 
-    protected Disposable disposable;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setTagLog();
-        setDisposable();
     }
 
     @Override
@@ -101,10 +97,6 @@ public abstract class BaseFragment extends Fragment {
      */
     protected API getApi() {
         return ((BaseActivity) Objects.requireNonNull(getActivity())).getApi();
-    }
-
-    private void setDisposable() {
-        disposable = ((BaseActivity) Objects.requireNonNull(getActivity())).getDisposable();
     }
 
     /**

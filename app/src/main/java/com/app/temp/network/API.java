@@ -1,6 +1,6 @@
 package com.app.temp.network;
 
-import com.app.temp.network.model.RepositoriesResponse;
+import com.app.temp.features.home.repolist.model.repository.RepositoryResponse;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
@@ -12,5 +12,5 @@ import retrofit2.http.Path;
 
 public interface API {
     @GET("users/{username}/repos")
-    Flowable<RepositoriesResponse> publicRepositories(@Path("username") String username);
+    Flowable<RepositoryResponse> publicRepositories(@Path("username") String username);
 }

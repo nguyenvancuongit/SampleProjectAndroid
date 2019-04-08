@@ -1,6 +1,5 @@
-package com.app.temp.network.model;
+package com.app.temp.features.home.repolist.model.repository;
 
-import com.app.temp.pojo.Repository;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -14,18 +13,18 @@ import java.lang.reflect.Type;
  * Created by nguyen_van_cuong on 23/11/2017.
  */
 
-public class RepositoriesResponseDeserializerJson implements JsonDeserializer<RepositoriesResponse> {
+public class RepositoryResponseDeserializerJson implements JsonDeserializer<RepositoryResponse> {
 
     @Override
-    public RepositoriesResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
+    public RepositoryResponse deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
             throws JsonParseException {
-        RepositoriesResponse repositoriesResponse = new RepositoriesResponse();
+        RepositoryResponse repositoryResponse = new RepositoryResponse();
         JsonArray jsonArray = je.getAsJsonArray();
         Gson gson = new Gson();
         for (JsonElement element : jsonArray) {
             Repository repository = gson.fromJson(element.getAsJsonObject(), Repository.class);
-            repositoriesResponse.add(repository);
+            repositoryResponse.add(repository);
         }
-        return repositoriesResponse;
+        return repositoryResponse;
     }
 }
